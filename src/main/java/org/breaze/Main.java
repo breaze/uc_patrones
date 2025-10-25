@@ -13,6 +13,8 @@ import org.breaze.estructurales.facade.Amplificador;
 import org.breaze.estructurales.facade.DVDPlayer;
 import org.breaze.estructurales.facade.Proyector;
 import org.breaze.estructurales.facade.TeatroEnCasa;
+import org.breaze.estructurales.proxy.IServicioPago;
+import org.breaze.estructurales.proxy.ProxyPago;
 
 import java.util.Scanner;
 
@@ -59,12 +61,16 @@ public class Main {
         director.buildLuxuryHouse();
         House luxuryHouse = builder.getHouse();
         System.out.println("Luxury house: " + luxuryHouse.getBathroom());*/
-        Amplificador amplificador = new Amplificador();
+        /*Amplificador amplificador = new Amplificador();
         DVDPlayer dvdPlayer = new DVDPlayer();
         Proyector proyector = new Proyector();
         TeatroEnCasa teatroEnCasa = new TeatroEnCasa(amplificador, dvdPlayer, proyector);
         teatroEnCasa.verPelicula("Los Simpsons");
         System.out.println("--------");
-        teatroEnCasa.apagarTodo();
+        teatroEnCasa.apagarTodo();*/
+        IServicioPago pago1 = new ProxyPago(true);
+        IServicioPago pago2 = new ProxyPago(false);
+        pago1.pagar(100.0);
+        pago2.pagar(50.0);
     }
 }
