@@ -1,6 +1,10 @@
 package org.breaze;
 
 import org.breaze.creacionales.abstractfactory.*;
+import org.breaze.creacionales.builder.Director;
+import org.breaze.creacionales.builder.House;
+import org.breaze.creacionales.builder.HouseBuilder;
+import org.breaze.creacionales.builder.IHouseBuilder;
 import org.breaze.creacionales.factory.*;
 import org.breaze.creacionales.factory.ITransporte;
 import org.breaze.creacionales.singleton.DBConnection;
@@ -26,7 +30,7 @@ public class Main {
         String tipoTransporte2 = sc.nextLine();
         ITransporte transporte1 = fabrica.crearTransporte(TipoTransporte.valueOf(tipoTransporte2));
         transporte1.entregar();*/
-        FabricaLogistica fabricaLogistica = new FabricaLogistica();
+        /*FabricaLogistica fabricaLogistica = new FabricaLogistica();
         IFabricaLogistica planeadorRuta = fabricaLogistica.crear(TipoLogistica.TERRESTRE);
         IPlaneadorRuta planeadorTierra = planeadorRuta.crearPlaneadorRuta();
         ITransporte tTerrestre = planeadorRuta.crearTransporte();
@@ -38,6 +42,20 @@ public class Main {
         ITransporte tMaritimo = planeadorRuta2.crearTransporte();
         planeadorMar.planearRuta("Cartagena", "Tulum");
         System.out.println("Entregando...");
-        tMaritimo.entregar();
+        tMaritimo.entregar();*/
+        House house = new House();
+        House house1 = House.builder.bedrooms(1)
+                .bathrooms(2)
+                .swimmingPool(true)
+                .getHouse();
+
+        Director director = new Director();
+        IHouseBuilder builder = new HouseBuilder();
+        director.setBuilder(builder);
+        director.buildLuxuryHouse();
+        House luxuryHouse = builder.getHouse();
+        System.out.println("Luxury house: " + luxuryHouse.getBathroom());
+
+
     }
 }
