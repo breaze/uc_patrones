@@ -1,6 +1,8 @@
 package org.breaze;
 
+import org.breaze.creacionales.abstractfactory.*;
 import org.breaze.creacionales.factory.*;
+import org.breaze.creacionales.factory.ITransporte;
 import org.breaze.creacionales.singleton.DBConnection;
 import org.breaze.creacionales.singleton.Test;
 
@@ -14,7 +16,7 @@ public class Main {
         /*DBConnection instance = DBConnection.getInstance();
         instance.setNumero(5);
         Test test = new Test("");*/
-        Scanner sc = new Scanner(System.in);
+        /*Scanner sc = new Scanner(System.in);
         System.out.println("Ingresa el tipo de transporte");
         String tipoTransporte = sc.nextLine();
         FabricaTransporte fabrica = new FabricaTransporte();
@@ -23,6 +25,19 @@ public class Main {
         System.out.println("Ingresa el tipo de transporte");
         String tipoTransporte2 = sc.nextLine();
         ITransporte transporte1 = fabrica.crearTransporte(TipoTransporte.valueOf(tipoTransporte2));
-        transporte1.entregar();
+        transporte1.entregar();*/
+        FabricaLogistica fabricaLogistica = new FabricaLogistica();
+        IFabricaLogistica planeadorRuta = fabricaLogistica.crear(TipoLogistica.TERRESTRE);
+        IPlaneadorRuta planeadorTierra = planeadorRuta.crearPlaneadorRuta();
+        ITransporte tTerrestre = planeadorRuta.crearTransporte();
+        planeadorTierra.planearRuta("Medellin", "Bogotá");
+        System.out.println("Entregando...");
+        tTerrestre.entregar();
+        IFabricaLogistica planeadorRuta2 = fabricaLogistica.crear(TipoLogistica.MARITIMA);
+        IPlaneadorRuta planeadorMar = planeadorRuta2.crearPlaneadorRuta();
+        ITransporte tMaritimo = planeadorRuta2.crearTransporte();
+        planeadorMar.planearRuta("Cartagena", "Tulum");
+        System.out.println("Entregando...");
+        tMaritimo.entregar();
     }
 }
