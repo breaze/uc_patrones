@@ -1,5 +1,9 @@
 package org.breaze;
 
+import org.breaze.comportamiento.Compra;
+import org.breaze.comportamiento.PagoConPayPal;
+import org.breaze.comportamiento.PagoConTarjeta;
+import org.breaze.comportamiento.PagoEfectivo;
 import org.breaze.creacionales.abstractfactory.*;
 import org.breaze.creacionales.builder.Director;
 import org.breaze.creacionales.builder.House;
@@ -68,9 +72,17 @@ public class Main {
         teatroEnCasa.verPelicula("Los Simpsons");
         System.out.println("--------");
         teatroEnCasa.apagarTodo();*/
-        IServicioPago pago1 = new ProxyPago(true);
+        /*IServicioPago pago1 = new ProxyPago(true);
         IServicioPago pago2 = new ProxyPago(false);
         pago1.pagar(100.0);
-        pago2.pagar(50.0);
+        pago2.pagar(50.0);*/
+
+        Compra compra = new Compra();
+        compra.setMetodoPago(new PagoConTarjeta());
+        compra.finalizarCompra(150.0);
+        compra.setMetodoPago(new PagoConPayPal());
+        compra.finalizarCompra(200);
+        compra.setMetodoPago(new PagoEfectivo());
+        compra.finalizarCompra(50);
     }
 }
