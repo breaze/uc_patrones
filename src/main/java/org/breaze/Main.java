@@ -9,6 +9,10 @@ import org.breaze.creacionales.factory.*;
 import org.breaze.creacionales.factory.ITransporte;
 import org.breaze.creacionales.singleton.DBConnection;
 import org.breaze.creacionales.singleton.Test;
+import org.breaze.estructurales.facade.Amplificador;
+import org.breaze.estructurales.facade.DVDPlayer;
+import org.breaze.estructurales.facade.Proyector;
+import org.breaze.estructurales.facade.TeatroEnCasa;
 
 import java.util.Scanner;
 
@@ -43,7 +47,7 @@ public class Main {
         planeadorMar.planearRuta("Cartagena", "Tulum");
         System.out.println("Entregando...");
         tMaritimo.entregar();*/
-        House house = new House();
+        /*House house = new House();
         House house1 = House.builder.bedrooms(1)
                 .bathrooms(2)
                 .swimmingPool(true)
@@ -54,8 +58,13 @@ public class Main {
         director.setBuilder(builder);
         director.buildLuxuryHouse();
         House luxuryHouse = builder.getHouse();
-        System.out.println("Luxury house: " + luxuryHouse.getBathroom());
-
-
+        System.out.println("Luxury house: " + luxuryHouse.getBathroom());*/
+        Amplificador amplificador = new Amplificador();
+        DVDPlayer dvdPlayer = new DVDPlayer();
+        Proyector proyector = new Proyector();
+        TeatroEnCasa teatroEnCasa = new TeatroEnCasa(amplificador, dvdPlayer, proyector);
+        teatroEnCasa.verPelicula("Los Simpsons");
+        System.out.println("--------");
+        teatroEnCasa.apagarTodo();
     }
 }
